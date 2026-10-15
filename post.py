@@ -5,7 +5,7 @@ CHANNEL = os.environ["CHANNEL"]
 OWNER = os.environ["OWNER_ID"]
 GEMINI_KEY = os.environ["GEMINI_API_KEY"]
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
-START = datetime.date(2026, 10, 16)  # 1-kitob chiqadigan sana
+START = datetime.date(2026, 10, 15)  # 1-kitob chiqadigan sana
 API = f"https://api.telegram.org/bot{TOKEN}/"
 
 
