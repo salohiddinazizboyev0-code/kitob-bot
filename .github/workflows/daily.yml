@@ -1,0 +1,26 @@
+name: Kunlik post
+on:
+  schedule:
+    - cron: "0 3 * * *"
+    - cron: "5,20,35,50 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [draft, check]
+        default: draft
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python post.py "$MODE"
+        env:
+          MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '0 3 * * *' && 'draft' || 'check') }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHANNEL: ${{ secrets.CHANNEL }}
+          OWNER_ID: ${{ secrets.OWNER_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
