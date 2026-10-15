@@ -95,7 +95,7 @@ def check():
             tg("answerCallbackQuery", callback_query_id=cq["id"])
         except Exception:
             pass
-    if updates:  # ishlangan yangilanishlarni tasdiqlash
+    if updates:
         tg("getUpdates", offset=updates[-1]["update_id"] + 1, timeout=0)
 
 
