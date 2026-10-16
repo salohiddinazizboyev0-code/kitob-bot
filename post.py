@@ -1,3 +1,4 @@
+import urllib.error
 import os, sys, json, datetime, urllib.request, urllib.parse
 
 TOKEN = os.environ["BOT_TOKEN"]
@@ -89,6 +90,8 @@ def check():
             if label:
                 tg("editMessageReplyMarkup", chat_id=OWNER, message_id=mid,
                    reply_markup={"inline_keyboard": [[{"text": label, "callback_data": "x"}]]})
+        except urllib.error.HTTPError as e:
+            print("Xato:", e, e.read().decode())
         except Exception as e:
             print("Xato:", e)
         try:
